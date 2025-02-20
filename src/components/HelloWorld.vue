@@ -1,7 +1,6 @@
 <script setup lang="ts">
 // Import components from the custom library
 import { useColorMode } from '@vueuse/core';
-import { Icon } from '@iconify/vue';
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -10,14 +9,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb'
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
 
-import { Label } from '@/components/ui/label'
 import { Separator } from '@/components/ui/separator'
 import {
   Sidebar,
@@ -25,8 +17,6 @@ import {
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
-  SidebarHeader,
-  SidebarInput,
   SidebarInset,
   SidebarMenu,
   SidebarMenuButton,
@@ -35,8 +25,8 @@ import {
   SidebarRail,
   SidebarTrigger,
 } from '@/components/ui/sidebar'
-import { Check, ChevronsUpDown, GalleryVerticalEnd, Search } from 'lucide-vue-next'
-import { ref } from 'vue'
+import Navbar from "@/components/Navbar.vue";
+
 
 const data = {
   versions: ['1.0.1', '1.1.0-alpha', '2.0.0-beta1'],
@@ -68,88 +58,34 @@ const data = {
       ],
     },
     {
-      title: 'API Reference',
+      title: 'Building Your Application',
       url: '#',
       items: [
-        { title: 'Components', url: '#' },
-        { title: 'File Conventions', url: '#' },
-        { title: 'Functions', url: '#' },
-        { title: 'next.config.js Options', url: '#' },
-        { title: 'CLI', url: '#' },
-        { title: 'Edge Runtime', url: '#' },
+        { title: 'Routing', url: '#' },
+        { title: 'Data Fetching', url: '#', isActive: true },
+        { title: 'Rendering', url: '#' },
+        { title: 'Caching', url: '#' },
+        { title: 'Styling', url: '#' },
+        { title: 'Optimizing', url: '#' },
+        { title: 'Configuring', url: '#' },
+        { title: 'Testing', url: '#' },
+        { title: 'Authentication', url: '#' },
+        { title: 'Deploying', url: '#' },
+        { title: 'Upgrading', url: '#' },
+        { title: 'Examples', url: '#' },
       ],
     },
-    {
-      title: 'Architecture',
-      url: '#',
-      items: [
-        { title: 'Accessibility', url: '#' },
-        { title: 'Fast Refresh', url: '#' },
-        { title: 'Next.js Compiler', url: '#' },
-        { title: 'Supported Browsers', url: '#' },
-        { title: 'Turbopack', url: '#' },
-      ],
-    },
+
   ],
-}
-
-const selectedVersion = ref(data.versions[0])
-const dropdownOpen = ref(false)
-const search = ref('')
-
-function toggleDropdown() {
-  dropdownOpen.value = !dropdownOpen.value
-}
-
-function setSelectedVersion(version: string) {
-  selectedVersion.value = version
 }
 
 const mode = useColorMode()
 </script>
 
 <template>
-  <SidebarProvider>
-    <Sidebar>
-      <SidebarHeader>
-        <SidebarMenu>
-          <SidebarMenuItem>
-            <SidebarMenuButton>
-             <h1 class="font-bold text-xl">Bonny</h1>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-        </SidebarMenu>
-
-        <form @submit.prevent>
-          <SidebarGroup class="py-0">
-            <SidebarGroupContent class="relative">
-              <DropdownMenu>
-                <DropdownMenuTrigger as-child>
-                  <Button class="flex items-center" variant="outline">
-                    <Icon icon="radix-icons:moon"
-                          class="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-                    <Icon icon="radix-icons:sun"
-                          class="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-                    <span class="sr-only">Toggle theme</span>
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end">
-                  <DropdownMenuItem @click="mode = 'light'">
-                    Light
-                  </DropdownMenuItem>
-                  <DropdownMenuItem @click="mode = 'dark'">
-                    Dark
-                  </DropdownMenuItem>
-                  <DropdownMenuItem @click="mode = 'auto'">
-                    System
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-            </SidebarGroupContent>
-          </SidebarGroup>
-        </form>
-      </SidebarHeader>
-
+  <Navbar />
+  <SidebarProvider class="h-[95vh]">
+    <Sidebar class="mt-[5vh]">
       <SidebarContent>
         <SidebarGroup v-for="item in data.navMain" :key="item.title">
           <SidebarGroupLabel>{{ item.title }}</SidebarGroupLabel>
