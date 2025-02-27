@@ -1,6 +1,6 @@
 <script setup lang="ts">
 // Import components from the custom library
-import { useColorMode } from '@vueuse/core';
+import { useColorMode } from "@vueuse/core";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -8,9 +8,9 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from '@/components/ui/breadcrumb'
+} from "@/components/ui/breadcrumb";
 
-import { Separator } from '@/components/ui/separator'
+import { Separator } from "@/components/ui/separator";
 import {
   Sidebar,
   SidebarContent,
@@ -24,62 +24,60 @@ import {
   SidebarProvider,
   SidebarRail,
   SidebarTrigger,
-} from '@/components/ui/sidebar'
+} from "@/components/ui/sidebar";
 import Navbar from "@/components/Navbar.vue";
 
-
 const data = {
-  versions: ['1.0.1', '1.1.0-alpha', '2.0.0-beta1'],
+  versions: ["1.0.1", "1.1.0-alpha", "2.0.0-beta1"],
   navMain: [
     {
-      title: 'Getting Started',
-      url: '#',
+      title: "Getting Started",
+      url: "#",
       items: [
-        { title: 'Installation', url: '#' },
-        { title: 'Project Structure', url: '#' },
+        { title: "Installation", url: "#" },
+        { title: "Project Structure", url: "#" },
       ],
     },
     {
-      title: 'Building Your Application',
-      url: '#',
+      title: "Building Your Application",
+      url: "#",
       items: [
-        { title: 'Routing', url: '#' },
-        { title: 'Data Fetching', url: '#', isActive: true },
-        { title: 'Rendering', url: '#' },
-        { title: 'Caching', url: '#' },
-        { title: 'Styling', url: '#' },
-        { title: 'Optimizing', url: '#' },
-        { title: 'Configuring', url: '#' },
-        { title: 'Testing', url: '#' },
-        { title: 'Authentication', url: '#' },
-        { title: 'Deploying', url: '#' },
-        { title: 'Upgrading', url: '#' },
-        { title: 'Examples', url: '#' },
+        { title: "Routing", url: "#" },
+        { title: "Data Fetching", url: "#", isActive: true },
+        { title: "Rendering", url: "#" },
+        { title: "Caching", url: "#" },
+        { title: "Styling", url: "#" },
+        { title: "Optimizing", url: "#" },
+        { title: "Configuring", url: "#" },
+        { title: "Testing", url: "#" },
+        { title: "Authentication", url: "#" },
+        { title: "Deploying", url: "#" },
+        { title: "Upgrading", url: "#" },
+        { title: "Examples", url: "#" },
       ],
     },
     {
-      title: 'Building Your Application',
-      url: '#',
+      title: "Building Your Application",
+      url: "#",
       items: [
-        { title: 'Routing', url: '#' },
-        { title: 'Data Fetching', url: '#', isActive: true },
-        { title: 'Rendering', url: '#' },
-        { title: 'Caching', url: '#' },
-        { title: 'Styling', url: '#' },
-        { title: 'Optimizing', url: '#' },
-        { title: 'Configuring', url: '#' },
-        { title: 'Testing', url: '#' },
-        { title: 'Authentication', url: '#' },
-        { title: 'Deploying', url: '#' },
-        { title: 'Upgrading', url: '#' },
-        { title: 'Examples', url: '#' },
+        { title: "Routing", url: "#" },
+        { title: "Data Fetching", url: "#", isActive: true },
+        { title: "Rendering", url: "#" },
+        { title: "Caching", url: "#" },
+        { title: "Styling", url: "#" },
+        { title: "Optimizing", url: "#" },
+        { title: "Configuring", url: "#" },
+        { title: "Testing", url: "#" },
+        { title: "Authentication", url: "#" },
+        { title: "Deploying", url: "#" },
+        { title: "Upgrading", url: "#" },
+        { title: "Examples", url: "#" },
       ],
     },
-
   ],
-}
+};
 
-const mode = useColorMode()
+const mode = useColorMode();
 </script>
 
 <template>
@@ -91,8 +89,14 @@ const mode = useColorMode()
           <SidebarGroupLabel>{{ item.title }}</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              <SidebarMenuItem v-for="subItem in item.items" :key="subItem.title">
-                <SidebarMenuButton :class="{ 'is-active': subItem.isActive }" as-child>
+              <SidebarMenuItem
+                v-for="subItem in item.items"
+                :key="subItem.title"
+              >
+                <SidebarMenuButton
+                  :class="{ 'is-active': subItem.isActive }"
+                  as-child
+                >
                   <a :href="subItem.url">{{ subItem.title }}</a>
                 </SidebarMenuButton>
               </SidebarMenuItem>
@@ -123,14 +127,7 @@ const mode = useColorMode()
         </Breadcrumb>
       </header>
 
-      <div class="flex flex-1 flex-col gap-4 p-4">
-        <div class="grid auto-rows-min gap-4 md:grid-cols-3">
-          <div class="aspect-video rounded-xl bg-muted/50" />
-          <div class="aspect-video rounded-xl bg-muted/50" />
-          <div class="aspect-video rounded-xl bg-muted/50" />
-        </div>
-        <div class="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min" />
-      </div>
+      <slot />
     </SidebarInset>
   </SidebarProvider>
 </template>
